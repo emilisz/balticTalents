@@ -75,7 +75,11 @@ class GroupController extends Controller
     public function edit($id)
     {
         $edit = Group::find($id);
-        return view('groups.edit', compact('edit'));
+
+        $students = User::where('type' , 2)->get();
+        $teachers = User::where('type' , 1)->get();
+        $courses = Course::all();
+        return view('groups.edit', compact('edit', 'students', 'teachers', 'courses'));
     }
 
     /**
@@ -87,12 +91,33 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
         $group = Group::find($id);
+        $group->user_id = $request->user_id;
+
+
         $group->course_id = $request->kursai_id;
-        $group->user_id = $request->destytojas_id;
+
+
+
         $group->name = $request->pavadinimas;
         $group->start_at = $request->pradzia;
         $group->end_at = $request->pabaiga;
+//        studentu priskyrimas
+        $student = $request->input('my_checkbox1');
+        if (isset($student) && $student>0) {
+            foreach ($student as $student) {
+                $group->students()->attach($student);
+            }
+        }
+//        studentu trynimas
+        $myCheckboxes = $request->input('my_checkbox');
+        if (isset($myCheckboxes)){
+            foreach ($myCheckboxes as $key=>$value){
+                $group->students()->detach($myCheckboxes[$key]);
+            }
+        }
 
 
         $group->save();

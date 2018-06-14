@@ -35,6 +35,14 @@ class AllTablesSeeder extends Seeder
             'password'     => Hash::make('secret')
         ]);
 
+        $agne = User::create([
+            'type'         => '1',
+            'name'         => 'agne',
+            'surname'      => 'agnaite',
+            'email'        => 'agne@gmail.com',
+            'password'     => Hash::make('secret')
+        ]);
+
         $petras = User::create([
             'type'         => '2',
             'name'         => 'petras',
@@ -51,6 +59,22 @@ class AllTablesSeeder extends Seeder
             'password'     => Hash::make('secret')
         ]);
 
+        $diana = User::create([
+            'type'         => '2',
+            'name'         => 'diana',
+            'surname'      => 'vix',
+            'email'        => 'diana@gmail.com',
+            'password'     => Hash::make('secret')
+        ]);
+
+        $oksana = User::create([
+            'type'         => '2',
+            'name'         => 'oksana',
+            'surname'      => 'binkevic',
+            'email'        => 'oksana@gmail.com',
+            'password'     => Hash::make('secret')
+        ]);
+
         $this->command->info('users are alive!');
 
         // seed our courses table ------------------------
@@ -61,6 +85,10 @@ class AllTablesSeeder extends Seeder
 
         $php = Course::create([
             'name'  => 'PHP'
+        ]);
+
+        $java = Course::create([
+            'name'  => 'Java'
         ]);
 
         $this->command->info('courses are alive!');
@@ -74,6 +102,14 @@ class AllTablesSeeder extends Seeder
             'name'      => 'grupe1',
             'start_at'        => '2018-05-25',
             'end_at'     => '2018-06-01'
+        ]);
+
+        $grupe_2 = Group::create([
+            'course_id'         => $java->id,
+            'user_id'         => $agne->id,
+            'name'      => 'grupe2',
+            'start_at'        => '2018-06-25',
+            'end_at'     => '2018-06-31'
         ]);
 
         $this->command->info('groups are alive!');
