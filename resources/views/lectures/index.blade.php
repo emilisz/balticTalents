@@ -14,7 +14,7 @@
         @endforeach
     </ul>
     <br>
-    <a class="btn btn-primary" href="/groups/create">Įvesti naują grupę</a>
+    <a class="btn btn-primary" href="lectures/create">Įvesti naują paskaitą</a>
     <br>
 
 @endsection

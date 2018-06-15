@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Group;
 use App\Lecture;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LectureController extends Controller
@@ -26,9 +27,12 @@ class LectureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $mytime = Carbon::now();
+        $paskaitos = Group::find($id);
+
+        return view('lectures.create', compact('mytime', 'paskaitos'));
     }
 
     /**
@@ -39,7 +43,15 @@ class LectureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $lecture = new Lecture();
+        $lecture->group_id = $request->group_id;
+        $lecture->date = $request->date;
+        $lecture->name = $request->name;
+        $lecture->description = $request->description;
+
+
+        $lecture->save();
+        return redirect('/groups');
     }
 
     /**
