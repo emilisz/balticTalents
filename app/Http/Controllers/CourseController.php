@@ -14,7 +14,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
+        return view('courses.index', compact('courses'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('courses.create');
     }
 
     /**
@@ -35,7 +36,11 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = new Course();
+
+        $course->name = $request->name;
+        $course->save();
+        return redirect('/courses');
     }
 
     /**
@@ -44,9 +49,10 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show($id)
     {
-        //
+        $course = Course::find($id);
+        return view('courses.show', compact('course'));
     }
 
     /**
@@ -55,9 +61,10 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit($id)
     {
-        //
+        $edit = Course::find($id);
+        return view('courses.edit', compact('edit'));
     }
 
     /**
@@ -67,9 +74,13 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, $id)
     {
-        //
+        $group = Course::find($id);
+        $group->pavadinimas = $request->pavadinimas;
+//        $camping->updated_by = Auth::user()->name;
+        $group->save();
+        return redirect('/courses');
     }
 
     /**

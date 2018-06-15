@@ -5,7 +5,7 @@
     <ul class="list-group">
         @foreach($courses as $course)
         <li class="list-group-item d-flex justify-content-between align-items-center">
-            <a class="btn btn-info btn-sm" href="courses/{{$course->id}}">{{$course->pavadinimas}}</a>
+            <a class="" href="courses/{{$course->id}}">{{$course->name}}</a>
             <div class="float-right">
             <a class="btn btn-warning btn-sm" href="/courses/{{$course->id}}/edit">Redaguoti</a>
             <a class="btn btn-danger btn-sm" href="/courses/{{$course->id}}/edit">Trinti</a>

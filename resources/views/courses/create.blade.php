@@ -6,7 +6,7 @@
 <form action="/courses" method="POST">
     @csrf
     <div class="form-group">
-        <input type="text" class="form-control" id="" name="pavadinimas" placeholder="Įveskite pavadinimą">
+        <input type="text" class="form-control" id="" name="name" placeholder="Įveskite pavadinimą">
     </div>
 
     <button type="submit" class="btn btn-primary">Sukurti</button>
