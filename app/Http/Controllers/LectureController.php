@@ -62,9 +62,9 @@ class LectureController extends Controller
      */
     public function show($ide, $id)
     {
-
+        $ide = Group::find($ide);
         $lecture = Lecture::find($id);
-        return view('lectures.show', compact('lecture'));
+        return view('lectures.show', compact('lecture', 'ide'));
     }
 
     /**
@@ -73,9 +73,13 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function edit(Lecture $lecture)
+    public function edit( $ide, $id)
     {
-        //
+        $mytime = Carbon::now();
+        $edit = Lecture::find($id);
+        $ide = Group::find($ide);
+
+        return view('lectures.edit', compact('edit', 'ide', 'mytime'));
     }
 
     /**
@@ -85,9 +89,17 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Lecture $lecture)
+    public function update(Request $request,$ide, $id)
     {
-        //
+        $lecture = Lecture::find($id);
+        $lecture->group_id = $request->group_id;
+        $lecture->date = $request->date;
+        $lecture->name = $request->name;
+        $lecture->description = $request->description;
+
+
+        $lecture->save();
+        return redirect('/groups');
     }
 
     /**
@@ -96,8 +108,10 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lecture $lecture)
+    public function destroy($ide, $id)
     {
-        //
+
+        Lecture::destroy($id);
+        return redirect('/groups');
     }
 }

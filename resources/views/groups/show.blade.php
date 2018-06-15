@@ -32,16 +32,16 @@
     <hr>
     <br>
 
-    <a class="btn btn-warning" href="/groups/{{$grupe->id}}/edit">Redaguoti grupę</a>
+    <a class="btn btn-warning btn-sm" href="/groups/{{$grupe->id}}/edit">Redaguoti grupę</a>
 
 
     <form class="float-right" action="{{route('groups.destroy',  ['id' => $grupe->id])}}" method="POST">
         @method('DELETE')
         {{csrf_field()}}
-        <input type="submit" class="btn btn-danger" value="Delete">
+        <input type="submit" class="btn btn-danger btn-sm" value="Delete">
     </form>
     <br><br>
-    <a class="btn btn-success" href="{{$grupe->id}}/lectures">Paskaitos</a>
+    <a class="btn btn-success" href="{{$grupe->id}}/lectures">Visos paskaitos</a>
 
     <br><br>
     <h3>Studentai:</h3>
