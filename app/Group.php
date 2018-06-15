@@ -35,7 +35,7 @@ class Group extends Model
 
     // each group has many lectures
     public function lectures() {
-        return $this->hasMany('App\Lecture');
+        return $this->hasMany('App\Lecture', 'group_id');
     }
 
     // each group BELONGS to many students

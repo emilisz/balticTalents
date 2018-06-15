@@ -62,7 +62,7 @@ class GroupController extends Controller
     public function show($id)
     {
         $grupe = Group::find($id);
-//dd($grupe->students);
+
         return view('groups.show', compact('grupe'));
     }
 
@@ -91,16 +91,9 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
         $group = Group::find($id);
         $group->user_id = $request->user_id;
-
-
         $group->course_id = $request->kursai_id;
-
-
-
         $group->name = $request->pavadinimas;
         $group->start_at = $request->pradzia;
         $group->end_at = $request->pabaiga;
@@ -119,7 +112,6 @@ class GroupController extends Controller
             }
         }
 
-
         $group->save();
         return redirect('/groups');
     }
@@ -132,6 +124,7 @@ class GroupController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Group::destroy($id);
+        return redirect('/groups');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\Lecture;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,12 @@ class LectureController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $paskaitos = Group::find($id);
+//        dd($paskaitos->lectures);
+
+       return view('lectures.index', compact('paskaitos'));
     }
 
     /**
@@ -44,9 +48,11 @@ class LectureController extends Controller
      * @param  \App\Lecture  $lecture
      * @return \Illuminate\Http\Response
      */
-    public function show(Lecture $lecture)
+    public function show($ide, $id)
     {
-        //
+
+        $lecture = Lecture::find($id);
+        return view('lectures.show', compact('lecture'));
     }
 
     /**
