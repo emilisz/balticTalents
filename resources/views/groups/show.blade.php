@@ -1,16 +1,12 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Grupe</h1>
-
+    <h1>{{$grupe->name}}</h1>
+    <br>
     <table class="table">
         <tbody>
         <tr>
-            <th scope="row">Pavadinimas</th>
-            <td>{{$grupe->name}}</td>
-        </tr>
-        <tr>
-            <th scope="row">Kursai_id</th>
+            <th scope="row">Kursas</th>
             <td>
                 @foreach($grupe->courses as $kursai)
                     {{$kursai->name.", "}}
@@ -27,7 +23,7 @@
             <td>{{$grupe->end_at}}</td>
         </tr>
         <tr>
-            <th scope="row">Dėstytojas_id</th>
+            <th scope="row">Dėstytojas</th>
             <td>{{$grupe->teacher->name}}</td>
         </tr>
 
