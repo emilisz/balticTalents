@@ -10,10 +10,12 @@
 
 
         <div class="form-group">
+            <label for="name">Pavadinimas</label>
             <input type="text" class="form-control" id="" name="name" placeholder="Įveskite pavadinimą">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" id="" name="description" placeholder="Aprašymas">
+            <label for="description">Aprašymas</label>
+            <textarea type="text" class="form-control ckeditor" id="" name="description" ></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Sukurti</button>
     </form>

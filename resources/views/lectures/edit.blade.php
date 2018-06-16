@@ -13,7 +13,7 @@
             <input type="text" class="form-control" name="name" value="{{$edit->name}}">
         </div>
         <div class="form-group">
-            <input type="text" class="form-control" name="description" value="{{$edit->description}}">
+            <textarea type="text" class="form-control ckeditor" name="description">{{$edit->description}}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Atnaujinti</button>
     </form>

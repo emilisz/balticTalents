@@ -6,7 +6,7 @@
 
     <ul class="list-group">
         <li class="list-group-item">Sukurta:  {{$lecture->date}}</li>
-        <li class="list-group-item">{{$lecture->description}}</li>
+        <li class="list-group-item">{!!  $lecture->description !!}</li>
     </ul>
     <br>
     <a class="btn btn-warning btn-sm" href="{{route('lectures.edit',  ['ide'=> $ide->id, 'id' => $lecture->id])}}">Redaguoti grupę</a>

@@ -7,7 +7,11 @@
         <tbody>
         <tr>
             <th scope="row">Pavadinimas</th>
-            <td>{{$course->pavadinimas}}</td>
+            <td>{{$course->name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Aprašymas</th>
+            <td>{!!  $course->description !!}</td>
         </tr>
 
 

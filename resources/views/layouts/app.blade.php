@@ -38,7 +38,7 @@
                         <a class="nav-link" href="{{ url('/groups/create') }}">Nauja grupė</a>
                         </li>
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/courses') }}">Nauji kursai</a>
+                        <a class="nav-link" href="{{ url('/courses') }}">Kursai</a>
                         </li>
                     </ul>
 
@@ -80,5 +80,12 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script>
+        $('textarea').ckeditor();
+        // $('.textarea').ckeditor(); // if class is prefered.
+    </script>
 </body>
 </html>

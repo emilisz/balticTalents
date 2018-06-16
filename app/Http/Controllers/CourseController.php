@@ -39,6 +39,7 @@ class CourseController extends Controller
         $course = new Course();
 
         $course->name = $request->name;
+        $course->description = $request->description;
         $course->save();
         return redirect('/courses');
     }
@@ -77,7 +78,8 @@ class CourseController extends Controller
     public function update(Request $request, $id)
     {
         $group = Course::find($id);
-        $group->pavadinimas = $request->pavadinimas;
+        $group->name = $request->name;
+        $group->description = $request->description;
 //        $camping->updated_by = Auth::user()->name;
         $group->save();
         return redirect('/courses');
@@ -89,8 +91,9 @@ class CourseController extends Controller
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy($id)
     {
-        //
+        Course::destroy($id);
+        return redirect('/courses');
     }
 }

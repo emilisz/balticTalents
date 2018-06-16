@@ -3,13 +3,17 @@
 
 <h1>Sukurti naują kursą:</h1>
 <br><br>
-<form action="/courses" method="POST">
-    @csrf
-    <div class="form-group">
-        <input type="text" class="form-control" id="" name="name" placeholder="Įveskite pavadinimą">
-    </div>
 
-    <button type="submit" class="btn btn-primary">Sukurti</button>
-</form>
+
+{!! Form::open(['action' => 'CourseController@store', 'method' => 'POST']) !!}
+    <div class="form-group">
+         {{ Form::label('name', 'Pavadinimas') }}
+         {{ Form::text('name', '', ['class'=> 'form-control ', 'placeholder'=>' Kurso pavadinimas']) }}
+    </div>
+    <div class="form-group">
+        {{ Form::textarea('description', '', ['class'=> 'form-control ckeditor', ]) }}
+    </div>
+{{Form::submit('Click Me!')}}
+{!! Form::close() !!}
 
 @endsection
