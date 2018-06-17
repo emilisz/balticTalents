@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Redaguoti paskaitą:</h1>
-    <br><br>
 
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>Redaguoti paskaitą:</h3></li>
+    </ul>
     <form action="{{route('lectures.update', ['ide'=> $ide->id,'id' => $edit->id])}}" method="POST", enctype="multipart/form-data">
         @method('PUT')
         @csrf

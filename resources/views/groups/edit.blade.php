@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Redaguoti grupę: {{$edit->name}}</h1>
-    <br><br>
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>Redaguoti grupę: {{$edit->name}}</h3></li>
+    </ul>
     <form action="{{route('groups.update', ['id' => $edit->id])}}" method="POST">
         @method('PUT')
         @csrf
@@ -96,12 +98,15 @@
                         </tr>
                         </thead>
                         <tbody>
+{{--                        {{dd(count($students))}}--}}
                         @foreach($students as $stud)
+
                             <tr>
                                 <th scope="row">{{$stud->name}}</th>
                                 <td>{{$stud->surname}}</td>
                                 <th><input type="checkbox" id="inlineCheckbox1" name="my_checkbox1[]" value="{{$stud->id}}"></th>
                             </tr>
+
                         @endforeach
 
                         </tbody>

@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<h1>Sukurti naują kursą:</h1>
-<br><br>
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-dark"> <h3>Sukurti naują kursą:</h3></li>
+</ul>
 
 
 {!! Form::open(['action' => 'CourseController@store', 'method' => 'POST']) !!}

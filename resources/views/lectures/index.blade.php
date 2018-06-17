@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Paskaitos:</h1>
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>Paskaitos:</h3></li>
+    </ul>
     <ol class="list-group">
         @foreach ($paskaitos->lectures as $paskaita)
 

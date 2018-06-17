@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Sukurti naują paskaitą:</h1>
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>Sukurti naują paskaitą:</h3></li>
+    </ul>
     <br><br>
     <form action="/groups/{ide}/lectures" method="POST", enctype="multipart/form-data">
         @csrf

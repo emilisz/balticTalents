@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<h1>Sukurti naują grupę:</h1>
-<br><br>
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-dark"> <h3>Sukurti naują grupę:</h3></li>
+</ul>
 <form action="/groups" method="POST">
     @csrf
     <div class="form-group">

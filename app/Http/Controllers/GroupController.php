@@ -6,6 +6,7 @@ use App\Course;
 use App\Group;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {

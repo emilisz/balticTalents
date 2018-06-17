@@ -1,8 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Kursas</h1>
 
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>Kursas</h3></li>
+    </ul>
     <table class="table">
         <tbody>
         <tr>

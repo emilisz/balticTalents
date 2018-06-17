@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h2 class="text-center"><strong> {{$lecture->name}}</strong>  </h2>
-    <br>
 
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>{{$lecture->name}}</h3></li>
+    </ul>
     <ul class="list-group">
         <li class="list-group-item">Sukurta:  {{$lecture->date}}</li>
         <li class="list-group-item">{!!  $lecture->description !!}</li>

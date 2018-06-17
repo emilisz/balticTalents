@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Redaguoti kursą:</h1>
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>Redaguoti kursą:</h3></li>
+    </ul>
     <br><br>
     <form action="{{route('courses.update', ['id' => $edit->id])}}" method="POST">
         @method('PUT')
