@@ -1,7 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Visos Baltic Talents grupės</h1>
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark"> <h3>Visos Baltic Talents grupės</h3></li>
+    </ul>
     <ul class="list-group">
         @foreach($groups as $group)
         <li class="list-group-item d-flex justify-content-between align-items-center">

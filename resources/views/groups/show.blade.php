@@ -1,9 +1,16 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>{{$grupe->name}}</h1>
-    <br>
-    <table class="table">
+
+    <table class="table table-light">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"><h4>{{$grupe->name}}</h4></th>
+            <th scope="col"></th>
+
+        </tr>
+        </thead>
         <tbody>
         <tr>
             <th scope="row">Kursas</th>
@@ -45,8 +52,8 @@
 
     <br><br>
     <h3>Studentai:</h3>
-    <table class="table">
-        <thead class="thead-dark">
+    <table class="table table-light">
+        <thead class="thead-light">
         <tr>
             <th scope="col">Vardas</th>
             <th scope="col">Pavardė</th>

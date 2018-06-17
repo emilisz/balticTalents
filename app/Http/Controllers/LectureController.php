@@ -143,13 +143,13 @@ if ($request->hasFile('file')){
         $lecture->name = $request->name;
         $lecture->description = $request->description;
         if ($request->hasFile('file')){
-            Storage::delete('public/cover_images/' . $lecture->cover_image);
+
             $lecture->file = $fileNameToStore;
         }
 
 
         $lecture->save();
-        return redirect('/groups');
+        return redirect('/groups/'.$ide.'/lectures');
     }
 
     /**

@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::resource('groups', 'GroupController');
 Route::resource('courses', 'CourseController');
 Route::resource('groups/{ide}/lectures', 'LectureController');
+Route::resource('downloads', 'DownloadController');
 
 Auth::routes();
 
