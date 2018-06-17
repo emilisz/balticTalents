@@ -9,7 +9,11 @@
         <li class="list-group-item">{!!  $lecture->description !!}</li>
     </ul>
     <br>
-    <a class="btn btn-warning btn-sm" href="{{route('lectures.edit',  ['ide'=> $ide->id, 'id' => $lecture->id])}}">Redaguoti grupę</a>
+    <div>
+        <img style="width: 100%;" src="/storage/cover_images/{{$lecture->file}}">
+    </div>
+    <br><br>
+    <a class="btn btn-warning btn-sm" href="{{route('lectures.edit',  ['ide'=> $ide->id, 'id' => $lecture->id])}}">Redaguoti paskaitą</a>
 
 
     <form class="float-right" action="{{route('lectures.destroy',  ['ide'=> $ide->id, 'id' => $lecture->id])}}" method="POST">

@@ -12,7 +12,13 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Lecture extends Model
 {
-    protected $fillable = ['group_id','date','name', 'description'];
+    protected $fillable = [
+        'group_id',
+        'date',
+        'name',
+        'description',
+        'file' => 'image|nullable|max:1999'
+    ];
     // each group has many courses
     public function files() {
         return $this->hasMany('App\File');

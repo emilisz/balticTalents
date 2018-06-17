@@ -3,7 +3,7 @@
 
     <h1>Sukurti naują paskaitą:</h1>
     <br><br>
-    <form action="/groups/{ide}/lectures" method="POST">
+    <form action="/groups/{ide}/lectures" method="POST", enctype="multipart/form-data">
         @csrf
         <input type="hidden" name="group_id" value="{{$paskaitos->id}}">
         <input type="hidden" name="date" value="{{ $mytime->toDateTimeString()}}">
@@ -16,6 +16,9 @@
         <div class="form-group">
             <label for="description">Aprašymas</label>
             <textarea type="text" class="form-control ckeditor" id="" name="description" ></textarea>
+        </div>
+        <div class="form-group">
+            {{Form::file('file')}}
         </div>
         <button type="submit" class="btn btn-primary">Sukurti</button>
     </form>

@@ -6,6 +6,7 @@ use App\Group;
 use App\Lecture;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LectureController extends Controller
 {
@@ -43,11 +44,39 @@ class LectureController extends Controller
      */
     public function store(Request $request)
     {
+
+//        $this->validate($request, [
+//            'group_id' => 'required',
+//            'date' => 'required',
+//            'name' => 'required',
+//            'description' => 'required',
+//            'file' => 'image|nullable|max:1999',
+//        ]);
+
+//        handle file upload
+if ($request->hasFile('file')){
+    //get filename with the extension
+        $fileNameWithExt = $request->file('file')->getClientOriginalName();
+    //    get just filename
+        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+    //    get just extension (ext)
+        $extension = $request->file('file')->getClientOriginalExtension();
+    //    filename to store
+        $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+    //upload image
+        $path = $request->file('file')->storeAs('public/cover_images', $fileNameToStore);
+
+}   else {
+    $fileNameToStore = 'noimage.jpg';
+}
+
+//        create lecture
         $lecture = new Lecture();
         $lecture->group_id = $request->group_id;
         $lecture->date = $request->date;
         $lecture->name = $request->name;
         $lecture->description = $request->description;
+        $lecture->file = $fileNameToStore;
 
 
         $lecture->save();
@@ -91,11 +120,32 @@ class LectureController extends Controller
      */
     public function update(Request $request,$ide, $id)
     {
+
+        //        handle file upload
+        if ($request->hasFile('file')){
+            //get filename with the extension
+            $fileNameWithExt = $request->file('file')->getClientOriginalName();
+            //    get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //    get just extension (ext)
+            $extension = $request->file('file')->getClientOriginalExtension();
+            //    filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            //upload image
+            $path = $request->file('file')->storeAs('public/cover_images', $fileNameToStore);
+
+        }
+
+
         $lecture = Lecture::find($id);
         $lecture->group_id = $request->group_id;
         $lecture->date = $request->date;
         $lecture->name = $request->name;
         $lecture->description = $request->description;
+        if ($request->hasFile('file')){
+            Storage::delete('public/cover_images/' . $lecture->cover_image);
+            $lecture->file = $fileNameToStore;
+        }
 
 
         $lecture->save();
@@ -110,7 +160,11 @@ class LectureController extends Controller
      */
     public function destroy($ide, $id)
     {
-
+$lecture = Lecture::find($id);
+    if ($lecture->cover_image != 'noimage.jpg'){
+    //    delete the image
+        Storage::delete('public/cover_images/'.$lecture->file);
+    }
         Lecture::destroy($id);
         return redirect('/groups');
     }
