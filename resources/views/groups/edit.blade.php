@@ -35,7 +35,7 @@
             <select class="form-control" name="user_id" >
                 <option name="user_id" value="{{$edit->teacher->id}}">{{$edit->teacher->name}}</option>
                 @foreach($teachers as $teacher)
-                    <option name="user_id" value="{{$teacher->id}}">{{$teacher->name}}</option>
+                    <option name="user_id" value="{{$teacher->id}}">{{$teacher->name}} {{$teacher->surname}}</option>
                 @endforeach
             </select>
         </div>

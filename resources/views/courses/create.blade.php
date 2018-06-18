@@ -15,7 +15,7 @@
     <div class="form-group">
         {{ Form::textarea('description', '', ['class'=> 'form-control ckeditor', ]) }}
     </div>
-{{Form::submit('Click Me!')}}
+{{Form::submit('Sukurti!', ['class'=> 'btn btn-success'])}}
 {!! Form::close() !!}
 
 @endsection

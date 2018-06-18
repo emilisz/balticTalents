@@ -19,12 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resources([
+    'groups' => 'GroupController',
+    'courses' => 'CourseController',
+    'groups/{ide}/lectures' => 'LectureController',
+    'downloads' => 'DownloadController',
+    'users' => 'UserController'
+]);
 
-
-Route::resource('groups', 'GroupController');
-Route::resource('courses', 'CourseController');
-Route::resource('groups/{ide}/lectures', 'LectureController');
-Route::resource('downloads', 'DownloadController');
 
 Auth::routes();
 

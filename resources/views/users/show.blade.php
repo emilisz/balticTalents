@@ -55,7 +55,6 @@
     <table class="table table-light">
         <thead class="thead-light">
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Vardas</th>
             <th scope="col">Pavardė</th>
             <th scope="col">El.paštas</th>
@@ -63,9 +62,8 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($grupe->students as $key=> $student)
+        @foreach($grupe->students as $student)
         <tr>
-            <th scope="row">{{$key+1}}</th>
             <th scope="row">{{$student->name}}</th>
             <td>{{$student->surname}}</td>
             <td>{{$student->email}}</td>

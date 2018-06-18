@@ -42,11 +42,33 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/groups/create') }}">Nauja grupė</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Grupės
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {{--<a class="nav-link" href="{{ url('/groups/create') }}">Nauja grupė</a>--}}
+                                <a class="dropdown-item" href="{{ url('/groups/create') }}">Nauja grupė</a>
+                                <a class="dropdown-item" href="/groups">Visos grupės</a>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                        <a class="nav-link" href="{{ url('/courses') }}">Kursai</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Kursai
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/courses/create') }}">Naujas kursas</a>
+                                <a class="dropdown-item" href="{{ url('/courses') }}">Visi kursai</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Studentai
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/users/create') }}">Naujas studentas</a>
+                                <a class="dropdown-item" href="{{ url('/users') }}">Visi studentai</a>
+                            </div>
                         </li>
                     </ul>
 

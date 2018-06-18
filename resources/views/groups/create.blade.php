@@ -12,10 +12,10 @@
     </div>
     <div class="form-group">
         <select class="form-control" name="destytojas_id" >
-            <option  placeholder="Įveskite kursu id">Pasirinkite dėstytoją</option>
+            <option  >Pasirinkite dėstytoją</option>
 
             @foreach($destytojas as $course)
-                <option value="{{$course->id}}">{{$course->name}}</option>
+                <option value="{{$course->id}}">{{$course->name}} {{$course->surname}}</option>
             @endforeach
 
         </select>
