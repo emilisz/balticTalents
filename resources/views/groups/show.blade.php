@@ -48,7 +48,7 @@
         <input type="submit" class="btn btn-danger btn-sm" value="Delete">
     </form>
     <br><br>
-    <a class="btn btn-success" href="{{$grupe->id}}/lectures">Visos paskaitos</a>
+    <a class="btn btn-success" href="{{$grupe->id}}/lectures">Visos paskaitos  <span class="badge badge-danger badge-pill">{{count($grupe->lectures)}}</span></a>
 
     <br><br>
     <h3>Studentai:</h3>

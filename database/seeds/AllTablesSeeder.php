@@ -80,15 +80,23 @@ class AllTablesSeeder extends Seeder
         // seed our courses table ------------------------
 
         $html = Course::create([
-            'name'  => 'HTML'
+            'name'  => 'HTML',
+            'description'  => 'HTML kursas'
         ]);
 
         $php = Course::create([
-            'name'  => 'PHP'
+            'name'  => 'PHP',
+            'description'  => 'php kursas'
         ]);
 
         $java = Course::create([
-            'name'  => 'Java'
+            'name'  => 'Java',
+            'description'  => 'java kursas'
+        ]);
+
+        $ux_ui = Course::create([
+            'name'  => 'UX-UI',
+            'description'  => 'ux kursas'
         ]);
 
         $this->command->info('courses are alive!');
@@ -97,19 +105,19 @@ class AllTablesSeeder extends Seeder
 // seed our groups table ------------------------
 
         $grupe_1 = Group::create([
-            'course_id'         => $html->id,
-            'user_id'         => $jonas->id,
-            'name'      => 'grupe1',
-            'start_at'        => '2018-05-25',
-            'end_at'     => '2018-06-01'
+            'course_id'      => $html->id,
+            'user_id'        => $jonas->id,
+            'name'           => 'grupe1',
+            'start_at'       => '2018-05-25',
+            'end_at'         => '2018-06-01'
         ]);
 
         $grupe_2 = Group::create([
-            'course_id'         => $java->id,
+            'course_id'       => $java->id,
             'user_id'         => $agne->id,
-            'name'      => 'grupe2',
+            'name'            => 'grupe2',
             'start_at'        => '2018-06-25',
-            'end_at'     => '2018-06-31'
+            'end_at'          => '2018-06-31'
         ]);
 
         $this->command->info('groups are alive!');
@@ -129,6 +137,13 @@ class AllTablesSeeder extends Seeder
             'date'        => '2018-07-02',
             'name'        => 'html pritaikymas',
             'description' => 'naudojimas ir atvaizdavimas naršyklėse'
+        ]);
+
+        $paskaita3 = Lecture::create([
+            'group_id'    => $grupe_1->id,
+            'date'        => '2018-08-02',
+            'name'        => 'css',
+            'description' => 'naudojimas ir pasiekiamumas'
         ]);
 
         $this->command->info('lectures are alive!');
