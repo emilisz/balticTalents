@@ -10,14 +10,17 @@
 
             <li class="list-group-item d-flex justify-content-between align-items-center" >
                 <a href="lectures/{{$paskaita->id}}">{{$key+1}}.  {{$paskaita->name}}</a>
+                <a href="lectures/{{$paskaita->id}}"> <i class="fas fa-angle-double-right"></i></a>
 
 
-                <span class="badge badge-primary badge-pill">{{count($paskaita->files)}}</span>
+
             </li>
         @endforeach
     </ol>
     <br>
+    @if(Auth::user()->type === 1)
     <a class="btn btn-primary" href="lectures/create">Įvesti naują paskaitą</a>
+    @endif
     <br>
 
 @endsection

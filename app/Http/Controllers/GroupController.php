@@ -6,10 +6,16 @@ use App\Course;
 use App\Group;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,11 @@ class GroupController extends Controller
      */
     public function index()
     {
+
+
         $groups = Group::all();
+
+
 
         return view('groups.index', compact('groups'));
     }

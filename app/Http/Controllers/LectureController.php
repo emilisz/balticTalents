@@ -6,10 +6,15 @@ use App\Group;
 use App\Lecture;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class LectureController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -30,8 +35,11 @@ class LectureController extends Controller
      */
     public function create($id)
     {
-        $mytime = Carbon::now();
-        $paskaitos = Group::find($id);
+        if(Auth::user()->type === 1){
+            $mytime = Carbon::now();
+            $paskaitos = Group::find($id);
+        }
+
 
         return view('lectures.create', compact('mytime', 'paskaitos'));
     }
@@ -55,20 +63,15 @@ class LectureController extends Controller
 
 //        handle file upload
 if ($request->hasFile('file')){
-    //get filename with the extension
-        $fileNameWithExt = $request->file('file')->getClientOriginalName();
-    //    get just filename
-        $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-    //    get just extension (ext)
-        $extension = $request->file('file')->getClientOriginalExtension();
-    //    filename to store
-        $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-    //upload image
-        $path = $request->file('file')->storeAs('public/cover_images', $fileNameToStore);
 
-}   else {
-    $fileNameToStore = 'noimage.jpg';
-}
+            $fileNameWithExt = $request->file('file')->getClientOriginalName();
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            $path = $request->file('file')->storeAs('public/cover_images', $fileNameToStore);
+    }   else {
+        $fileNameToStore = 'noimage.jpg';
+    }
 
 //        create lecture
         $lecture = new Lecture();

@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Lecture;
+use App\Profile;
+use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
-class DownloadController extends Controller
+class ProfileController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -46,45 +44,64 @@ class DownloadController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $images = Lecture::find($id);
-        return response()->download(public_path('/storage/cover_images/'.$images->file));
+        $user  = User::find($id);
+        return view('profiles.show', compact('user'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $user  = User::find($id);
+       return view('profiles.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::where('email', '=', Input::get('email'))->exists();
+        $user1 = User::where('email', '=', Input::get('email'))->first();
+
+
+            $group = User::find($id);
+//            $group->type = Auth::user()->type;
+            $group->name = $request->name;
+            $group->surname = $request->surname;
+//            dd($request->email);
+        if ($user === false) {
+            $group->email = $request->email;
+        } elseif ($user === true && $user1->email === Auth::user()->email) {
+            $group->email = Auth::user()->email;
+        } elseif ($user === true && $user1->email != Auth::user()->email) {
+            return 'email already taken';
+        }
+            $group->save();
+            return redirect('/profiles/'.$id);
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Profile $profile)
     {
         //
     }

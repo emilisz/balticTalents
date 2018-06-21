@@ -18,6 +18,7 @@
     <a class="btn btn-success btn-outline" href="{{route('downloads.show',  ['id' => $lecture->id])}}" >Atsisiusti</a>
     @endif
     <br><br>
+    @if(Auth::user()->type === 1)
     <a class="btn btn-warning btn-sm" href="{{route('lectures.edit',  ['ide'=> $ide->id, 'id' => $lecture->id])}}">Redaguoti paskaitą</a>
 
 
@@ -26,4 +27,5 @@
         {{csrf_field()}}
         <input type="submit" class="btn btn-danger btn-sm" value="Trinti paskaitą">
     </form>
+    @endif
 @endsection

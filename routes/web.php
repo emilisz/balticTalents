@@ -19,12 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::resources([
     'groups' => 'GroupController',
     'courses' => 'CourseController',
     'groups/{ide}/lectures' => 'LectureController',
     'downloads' => 'DownloadController',
-    'users' => 'UserController'
+    'users' => 'UserController',
+    'profiles' => 'ProfileController'
 ]);
 
 

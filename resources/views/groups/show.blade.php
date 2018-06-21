@@ -6,7 +6,7 @@
         <thead class="thead-light">
         <tr>
             <th scope="col"></th>
-            <th scope="col"><h4>{{$grupe->name}}</h4></th>
+            <th scope="col"><h4> {{$grupe->name}}</h4></th>
             <th scope="col"></th>
 
         </tr>
@@ -31,14 +31,13 @@
         </tr>
         <tr>
             <th scope="row">Dėstytojas</th>
-            <td>{{$grupe->teacher->name}}</td>
+            <td>{{$grupe->teacher->name}} {{$grupe->teacher->surname}}</td>
         </tr>
 
         </tbody>
     </table>
     <hr>
-    <br>
-
+    @if(Auth::check() &&   Auth::user()->type === 1)
     <a class="btn btn-warning btn-sm" href="/groups/{{$grupe->id}}/edit">Redaguoti grupę</a>
 
 
@@ -47,11 +46,12 @@
         {{csrf_field()}}
         <input type="submit" class="btn btn-danger btn-sm" value="Delete">
     </form>
-    <br><br>
-    <a class="btn btn-success" href="{{$grupe->id}}/lectures">Visos paskaitos  <span class="badge badge-danger badge-pill">{{count($grupe->lectures)}}</span></a>
+    @endif
+    <br><br><br>
+    <a class="btn btn-success btn-lg" href="{{$grupe->id}}/lectures">Visos paskaitos  <span class="badge badge-danger badge-pill">{{count($grupe->lectures)}}</span></a>
 
     <br><br>
-    <h3>Studentai:</h3>
+    <h3><i class="fas fa-users"></i> Studentai:</h3>
     <table class="table table-light">
         <thead class="thead-light">
         <tr>

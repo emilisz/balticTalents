@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFileToLecturesTable extends Migration
+class CreateProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddFileToLecturesTable extends Migration
      */
     public function up()
     {
-        Schema::table('lectures', function (Blueprint $table) {
-            $table->string('file')->nullable();
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +26,6 @@ class AddFileToLecturesTable extends Migration
      */
     public function down()
     {
-        Schema::table('lectures', function (Blueprint $table) {
-            $table->dropColumn('file');
-        });
+        Schema::dropIfExists('profiles');
     }
 }
