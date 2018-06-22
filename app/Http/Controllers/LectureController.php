@@ -14,6 +14,7 @@ class LectureController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('CheckAdmin')->only('create', 'store', 'edit', 'update', 'destroy');
     }
     /**
      * Display a listing of the resource.

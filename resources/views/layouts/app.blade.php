@@ -43,6 +43,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(Auth::check() && Auth::user()->type === 2)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/groups') }}">Mano kursai</a>
+                        </li>
+                        @elseif(Auth::check() && Auth::user()->type === 1)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Grupės
@@ -71,6 +76,7 @@
                                 <a class="dropdown-item" href="{{ url('/users') }}">Visi studentai</a>
                             </div>
                         </li>
+                            @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
 {
@@ -12,6 +14,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('CheckAdmin')->only('index','create', 'store', 'edit', 'update', 'destroy');
     }
     /**
      * Display a listing of the resource.
@@ -84,12 +87,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $user = User::where('email', '=', Input::get('email'))->exists();
+        $user1 = User::where('email', '=', Input::get('email'))->first();
+
         $group = User::find($id);
         $group->type = 2;
         $group->name = $request->name;
         $group->surname = $request->surname;
-        $group->email = $request->email;
-        $group->password = $request->password;
+        if ($user === false) {
+            $group->email = $request->email;
+        } elseif (($user === true && $user1->email === Auth::user()->email) || Auth::user()->type === 1) {
+            $group->email = $request->email;
+        } elseif ($user === true && $user1->email != Auth::user()->email) {
+            return 'email already taken';
+        }
         $group->save();
         return redirect('/users');
     }
@@ -102,6 +114,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect('/users');
     }
 }

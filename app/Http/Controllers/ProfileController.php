@@ -79,10 +79,8 @@ class ProfileController extends Controller
 
 
             $group = User::find($id);
-//            $group->type = Auth::user()->type;
             $group->name = $request->name;
             $group->surname = $request->surname;
-//            dd($request->email);
         if ($user === false) {
             $group->email = $request->email;
         } elseif ($user === true && $user1->email === Auth::user()->email) {
@@ -101,8 +99,8 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Profile $profile)
+    public function destroy($id)
     {
-        //
+
     }
 }

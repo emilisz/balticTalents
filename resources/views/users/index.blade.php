@@ -22,11 +22,17 @@
         @foreach($users as $key=> $user)
         <tr>
             <th scope="row">{{$key+1}}</th>
-            <td><a href="users/{{$user->id}}">{{$user->name}}</a></td>
+            <td>{{$user->name}}</td>
             <td>{{$user->surname}}</td>
             <td>{{$user->email}}</td>
             <td><a class="btn btn-warning btn-sm" href="users/{{$user->id}}/edit">Redaguoti</a></td>
-            <td>{{$user->email}}</td>
+            <td>
+                <form class="float-right" action="{{route('users.destroy',  ['id' => $user->id])}}" method="POST">
+                    @method('DELETE')
+                    {{csrf_field()}}
+                    <input type="submit" class="btn btn-danger btn-sm" value="Trinti">
+                </form>
+            </td>
         </tr>
         @endforeach
         </tbody>
