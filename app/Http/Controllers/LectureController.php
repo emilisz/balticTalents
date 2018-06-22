@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Group;
 use App\Lecture;
 use Carbon\Carbon;
@@ -39,6 +40,7 @@ class LectureController extends Controller
         if(Auth::user()->type === 1){
             $mytime = Carbon::now();
             $paskaitos = Group::find($id);
+
         }
 
 
@@ -54,25 +56,21 @@ class LectureController extends Controller
     public function store(Request $request)
     {
 
-//        $this->validate($request, [
-//            'group_id' => 'required',
-//            'date' => 'required',
-//            'name' => 'required',
-//            'description' => 'required',
-//            'file' => 'image|nullable|max:1999',
-//        ]);
 
-//        handle file upload
-if ($request->hasFile('file')){
 
-            $fileNameWithExt = $request->file('file')->getClientOriginalName();
-            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('file')->getClientOriginalExtension();
-            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
-            $path = $request->file('file')->storeAs('public/cover_images', $fileNameToStore);
-    }   else {
-        $fileNameToStore = 'noimage.jpg';
+        if($request->hasFile('file')) {
+            $files = $request->file('file');
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $file->move(public_path().'/uploads', $filename);
+                $file = new File();
+                $file->failas = $filename;
+                $file->lecture_id = 2;
+                $file->save();
+
+            }
     }
+
 
 //        create lecture
         $lecture = new Lecture();
@@ -80,10 +78,11 @@ if ($request->hasFile('file')){
         $lecture->date = $request->date;
         $lecture->name = $request->name;
         $lecture->description = $request->description;
-        $lecture->file = $fileNameToStore;
+
 
 
         $lecture->save();
+
         return redirect('/groups');
     }
 
@@ -165,11 +164,13 @@ if ($request->hasFile('file')){
     public function destroy($ide, $id)
     {
 $lecture = Lecture::find($id);
-    if ($lecture->cover_image != 'noimage.jpg'){
+    if (count($lecture->files) > 0){
     //    delete the image
-        Storage::delete('public/cover_images/'.$lecture->file);
+        Storage::delete('uploads/'.$lecture->file);
     }
         Lecture::destroy($id);
+    $file = File::where('lecture_id', '=', $id)->get();
+    File::destroy($file);
         return redirect('/groups');
     }
 }

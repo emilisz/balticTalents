@@ -21,7 +21,7 @@
             <textarea type="text" class="form-control ckeditor" id="" name="description" ></textarea>
         </div>
         <div class="form-group">
-            {{Form::file('file')}}
+            <input type="file" name="file[]" multiple>
         </div>
         <button type="submit" class="btn btn-primary">Sukurti</button>
     </form>

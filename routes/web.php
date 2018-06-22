@@ -26,7 +26,8 @@ Route::resources([
     'groups/{ide}/lectures' => 'LectureController',
     'downloads' => 'DownloadController',
     'users' => 'UserController',
-    'profiles' => 'ProfileController'
+    'profiles' => 'ProfileController',
+    'files'=> 'FileController'
 ]);
 
 

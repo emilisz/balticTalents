@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lecture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\File;
 
 class DownloadController extends Controller
 {
@@ -51,8 +52,14 @@ class DownloadController extends Controller
      */
     public function show($id)
     {
-        $images = Lecture::find($id);
-        return response()->download(public_path('/storage/cover_images/'.$images->file));
+        $images = File::find($id);
+//        for ($i =0 ; $i < count($images->files); $i++){
+//            dd($images->files[$i]->failas);
+//        }
+
+
+
+        return response()->download(public_path('uploads/'.$images->failas));
     }
 
     /**

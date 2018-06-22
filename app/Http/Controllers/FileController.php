@@ -14,7 +14,7 @@ class FileController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -35,7 +35,26 @@ class FileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        if($request->hasFile('file')) {
+            $files = $request->file('file');
+            foreach ($files as $file) {
+                $filename = $file->getClientOriginalName();
+                $file->move(public_path().'/uploads', $filename);
+                $file = new File();
+                $file->failas = $filename;
+                $file->lecture_id = $request->lecture_id;
+                $file->rodyti = 1;
+                $file->save();
+
+            }
+        }
+
+
+
+
+        return redirect('/groups');
     }
 
     /**
@@ -55,21 +74,31 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function edit(File $file)
+    public function edit($ide,$id)
     {
-        //
+
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\File  $file
+     * @param  \Illuminate\Http\Request $request
+     * @param $ide
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, File $file)
+    public function update(Request $request,$ide, $id)
     {
-        //
+dd($ide);
+        $file = File::find($request->id);
+        if ($file->rodyti = 1){
+            $file->rodyti = 2;
+        } else {
+            $file->rodyti = 1;
+        }
+
+        $file->save();
+        return redirect('/groups/'.$ide.'/lectures'.$id);
     }
 
     /**
