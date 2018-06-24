@@ -20,9 +20,7 @@
             <label for="description">Aprašymas</label>
             <textarea type="text" class="form-control ckeditor" id="" name="description" ></textarea>
         </div>
-        <div class="form-group">
-            <input type="file" name="file[]" multiple>
-        </div>
+
         <button type="submit" class="btn btn-primary">Sukurti</button>
     </form>
 

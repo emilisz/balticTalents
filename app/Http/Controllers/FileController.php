@@ -54,7 +54,7 @@ class FileController extends Controller
 
 
 
-        return redirect('/groups');
+        return redirect()->back();
     }
 
     /**
@@ -87,18 +87,19 @@ class FileController extends Controller
      * @param $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$ide, $id)
+    public function update(Request $request,$ide, $id, $ids)
     {
-dd($ide);
-        $file = File::find($request->id);
-        if ($file->rodyti = 1){
+
+        $file = File::find($ids);
+
+        if ($file->rodyti === 1){
             $file->rodyti = 2;
         } else {
             $file->rodyti = 1;
         }
 
         $file->save();
-        return redirect('/groups/'.$ide.'/lectures'.$id);
+        return redirect()->back();
     }
 
     /**
@@ -107,8 +108,11 @@ dd($ide);
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function destroy(File $file)
+    public function destroy($ide, $id, $ids)
     {
-        //
+
+        File::destroy($ids);
+        return redirect()->back();
+
     }
 }

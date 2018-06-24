@@ -23,11 +23,11 @@ Route::get('/', function () {
 Route::resources([
     'groups' => 'GroupController',
     'courses' => 'CourseController',
-    'groups/{ide}/lectures' => 'LectureController',
+    'groups.lectures' => 'LectureController',
     'downloads' => 'DownloadController',
     'users' => 'UserController',
     'profiles' => 'ProfileController',
-    'files'=> 'FileController'
+    'groups.lectures.files'=> 'FileController'
 ]);
 
 
