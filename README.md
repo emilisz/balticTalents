@@ -7,17 +7,17 @@
 
 * Studentas gautas zinutes mato tik iejes i grupe
 
-
-
-
-####Praktinė užduotis
-#####Tikslas
+ 
+ 
+ 
+#### Praktinė užduotis ####
+##### Tikslas #####
 Sukurti užsakovui:  mokomosios medžiagos talpinimui skirtą sistemą, kurioje dėstytojas galėtų pateikti mokomąją medžiagą (failus), o studentai galėtų prisijungę ją parsisiųsti.
-Visos sistemos veikimo principai: 
+### Visos sistemos veikimo principai: ###
 * Visi vartotojai (dėstytojai ir studentai) talpinami vienoje duomenų bazės lentelėje (lentelė vartotojai) kurioje turi būti laukas nusakantis kokio tipo šis vartotojas: dėstytojas ar studentas (gali būti int tipo, tuomet tarkime 1 – dėstytojas, 2 – studentas). 
-*Dėstytojas turėtų turėti galimybę kurti atskirus kursus (lentelėje kursai, pavyzdžiui „PHP“, „Frontend“, „UX/UI“ ir kt.). Tuomet dėstytojas turi galėti sukurti atskiras grupes (lentelėje grupė, pavyzdžiui grupė kuri studijuoja PHP kursą nuo 2018 sausio, galėtų vadintis PHP 2018.01, šiai grupei parenkamas kursas ir priskiriamas dėstytojas vedantis tą kursą (dėstytojo ID). 
+* Dėstytojas turėtų turėti galimybę kurti atskirus kursus (lentelėje kursai, pavyzdžiui „PHP“, „Frontend“, „UX/UI“ ir kt.). Tuomet dėstytojas turi galėti sukurti atskiras grupes (lentelėje grupė, pavyzdžiui grupė kuri studijuoja PHP kursą nuo 2018 sausio, galėtų vadintis PHP 2018.01, šiai grupei parenkamas kursas ir priskiriamas dėstytojas vedantis tą kursą (dėstytojo ID). 
 * Tuomet dėstytojas turi galėti sukurti atskirai grupei paskaitas (paskaitai priskiriamas grupės ID, pavadinimas ir kt.). Kiekvienai paskaitai dėstytojas prideda failus (skaidres ir k.t.). 
-Prie sistemos prisijungus studentui turėtų rodyti tik jo grupes (tas prie kurių jis yra priskirtas). Paspaudus ant grupės, turėtų išvesti visas paskaitas ir jose patalpintus dėstytojo failus.
+* Prie sistemos prisijungus studentui turėtų rodyti tik jo grupes (tas prie kurių jis yra priskirtas). Paspaudus ant grupės, turėtų išvesti visas paskaitas ir jose patalpintus dėstytojo failus.
 
 
 1. Suprogramuokite prisijungimą prie sistemos, kiekvienas vartotojas prisijungia su slaptažodžiu (tam jums reikės papildyti DB lentelę vartotojai). Dėstytojams ir studentams gali būti kuriami atskiri puslapiai (front-office ir back-office). 
