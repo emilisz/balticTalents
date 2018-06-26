@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Group extends Model
 {
+    use Notifiable;
     // MASS ASSIGNMENT -------------------------------------------------------
     // define which attributes are mass assignable (for security)
     // we only want these 3 attributes able to be filled

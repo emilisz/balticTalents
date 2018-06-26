@@ -1,4 +1,13 @@
 @extends('layouts.app')
+@section('title')
+    <li class="nav-item dropdown">
+        <a class="nav-link " href="{{route('groups.notifications.index', ['id' => $grupe->id])}}"  role="button" >
+            <i class="fas fa-envelope"></i>
+            <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+        </a>
+    </li>
+
+@endsection
 @section('content')
 
 
@@ -52,6 +61,8 @@
 
     <br><br>
     <h3><i class="fas fa-users"></i> Studentai:</h3>
+
+    <a class="btn btn-primary mb-2" href="{{$grupe->id}}/notifications/create"> Siųsti žinutę grupei</a>
     <table class="table table-light">
         <thead class="thead-light">
         <tr>

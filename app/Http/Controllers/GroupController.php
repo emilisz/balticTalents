@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Group;
+use App\Notifications\Newmessage;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,8 +28,6 @@ class GroupController extends Controller
 
 
         $groups = Group::all();
-
-
 
         return view('groups.index', compact('groups'));
     }

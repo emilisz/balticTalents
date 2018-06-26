@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\Newmessage;
 
 /**
  * @property mixed $groups
@@ -35,6 +36,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password','adminpassword', 'remember_token',
     ];
+
 
 //    user can have many groups
     public function groups() {
