@@ -30,8 +30,9 @@
 
     <br>
     @foreach($lecture->files as $file)
-    <a class="btn btn-success btn-outline mt-3" href="{{route('downloads.show',  ['id' => $file->id])}}" >{{$file->failas}}</a>
-
+        @if($file->rodyti === 1 || Auth::user()->type === 1)
+            <a class="btn btn-success btn-outline mt-3" href="{{route('downloads.show',  ['id' => $file->id])}}" >{{$file->failas}}</a>
+    @endif
 
 
     @if(Auth::user()->type === 1)
