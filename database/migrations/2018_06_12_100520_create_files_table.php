@@ -17,7 +17,7 @@ class CreateFilesTable extends Migration
             $table->increments('id');
             $table->integer('lecture_id'); // this will contain our foreign key to the lecture table
             $table->string('failas');
-            $table->string('pavadinimas');
+            $table->integer('rodyti')->default(1);
             $table->timestamps();
         });
     }

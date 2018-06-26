@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-<h1 class="text-center">Baltic talents school management system</h1>
+
 <br>
     <ul class="list-group">
-        <li class="list-group-item list-group-item-dark"> <h3>Visos Baltic Talents grupės</h3></li>
+        <li class="list-group-item list-group-item-dark"> <h3>Visos grupės</h3></li>
     </ul>
     <ul class="list-group">
         @foreach($groups as $group)

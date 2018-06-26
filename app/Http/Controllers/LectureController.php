@@ -83,7 +83,7 @@ class LectureController extends Controller
 
         $lecture->save();
 
-        return redirect('/groups');
+        return redirect('/groups/'.$lecture->group_id.'/lectures');
     }
 
     /**
@@ -169,8 +169,10 @@ $lecture = Lecture::find($id);
         Storage::delete('uploads/'.$lecture->file);
     }
         Lecture::destroy($id);
-    $file = File::where('lecture_id', '=', $id)->get();
-    File::destroy($file);
+        if (count($lecture->files) > 0) {
+            $file = File::where('lecture_id', '=', $id)->get();
+            File::destroy($file);
+        }
         return redirect('/groups');
     }
 }

@@ -18,6 +18,7 @@ class CreateMessagesTable extends Migration
             $table->integer('grupe_id');
             $table->string('name');
             $table->string('description');
+            $table->string('author');
             $table->timestamps();
         });
     }

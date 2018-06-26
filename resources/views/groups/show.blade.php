@@ -61,8 +61,9 @@
 
     <br><br>
     <h3><i class="fas fa-users"></i> Studentai:</h3>
-
+    @if(Auth::check() &&   Auth::user()->type === 1)
     <a class="btn btn-primary mb-2" href="{{$grupe->id}}/notifications/create"> Siųsti žinutę grupei</a>
+    @endif
     <table class="table table-light">
         <thead class="thead-light">
         <tr>

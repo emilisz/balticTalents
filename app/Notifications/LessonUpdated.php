@@ -30,7 +30,7 @@ class LessonUpdated extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
 
@@ -45,4 +45,27 @@ class LessonUpdated extends Notification
 
         return $this->lesson->toArray();
     }
+
+
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable)
+
+    {
+//        dd($this->lesson[0]->description);
+        return (new MailMessage)
+
+            ->success()
+
+            ->subject($this->lesson[0]->name)
+
+            ->line($this->lesson[0]->description)
+
+            ->action('Baltic talents', 'http://127.0.0.1:8000');
+    }
+
 }

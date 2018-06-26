@@ -11,15 +11,11 @@
 |
 */
 
-use App\Group;
-use App\Lecture;
-use App\Notifications\LessonUpdated;
-use App\User;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
-//Auth::loginUsingId(1);
 
 Route::get('/', function () {
     return view('welcome');
