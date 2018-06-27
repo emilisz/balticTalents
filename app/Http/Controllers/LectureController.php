@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use \Validator;
 
 class LectureController extends Controller
 {
@@ -56,7 +57,17 @@ class LectureController extends Controller
     public function store(Request $request)
     {
 
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+            'name' => 'required|max:35',
+            'description' => 'required|max:350'
+        ]);
 
+        if ($validator->fails()) {
+            return redirect('groups/'.$request->group_id.'/lectures/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         if($request->hasFile('file')) {
             $files = $request->file('file');
@@ -123,6 +134,19 @@ class LectureController extends Controller
      */
     public function update(Request $request,$ide, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'group_id' => 'required',
+            'name' => 'required|max:35',
+            'description' => 'required|max:350'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('groups/'.$request->group_id.'/lectures/'.$id.'/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
         //        handle file upload
         if ($request->hasFile('file')){

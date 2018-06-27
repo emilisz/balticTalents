@@ -44,11 +44,6 @@
 
 @if(Auth::user()->id === $user->id)
         <a class="btn btn-warning btn-sm" href="{{route('profiles.edit',  [ 'id' => $user->id])}}">Redaguoti</a>
-        <form class="float-right" action="{{route('profiles.destroy',  ['id' => $user->id])}}" method="POST">
-            @method('DELETE')
-            {{csrf_field()}}
-            <input type="submit" class="btn btn-danger btn-sm" value="Trinti">
-        </form>
 
 @endif
 

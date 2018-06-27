@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use \Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -45,6 +46,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:25',
+            'surname' => 'required|max:25',
+            'email' => 'required|email|max:35',
+            'password' => 'required|min:6|max:35',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('users/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
         $student = new User();
 
         $student->type = 2;
@@ -87,6 +103,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required|max:35',
+            'email' => 'required|max:45'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('users/'.$id.'/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $user = User::where('email', '=', Input::get('email'))->exists();
         $user1 = User::where('email', '=', Input::get('email'))->first();

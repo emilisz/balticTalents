@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use App\Group;
+use App\Groups_messages;
 use App\Notifications\Newmessage;
 use App\User;
+use \Validator;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -39,9 +42,12 @@ class GroupController extends Controller
      */
     public function create()
     {
+        $time = Carbon::now()->toDateString();
+        $time2 = Carbon::now()->addDay()->toDateString();
+        $time3 = Carbon::now()->addYear()->toDateString();
         $courses = Course::all();
         $destytojas = User::where('type' , 1)->get();
-        return view('groups.create', compact('courses', 'destytojas'));
+        return view('groups.create', compact('courses', 'destytojas', 'time', 'time2', 'time3'));
     }
 
     /**
@@ -52,6 +58,21 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'pavadinimas' => 'required|max:25',
+            'destytojas_id' => 'required',
+            'kursai_id' => 'required',
+            'pradzia' => 'required',
+            'pabaiga' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('groups/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $group = new Group();
         $group->course_id = $request->kursai_id;
         $group->user_id = $request->destytojas_id;
@@ -87,6 +108,7 @@ class GroupController extends Controller
     {
         $edit = Group::find($id);
 
+
         $students = User::where('type' , 2)->get();
         $teachers = User::where('type' , 1)->get();
         $courses = Course::all();
@@ -102,6 +124,21 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $validator = Validator::make($request->all(), [
+            'pavadinimas' => 'required|max:25',
+            'user_id' => 'required',
+            'kursai_id' => 'required',
+            'pradzia' => 'required',
+            'pabaiga' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('groups/'.$id.'/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $group = Group::find($id);
         $group->user_id = $request->user_id;
         $group->course_id = $request->kursai_id;

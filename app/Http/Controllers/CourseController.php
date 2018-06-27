@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Course;
+use \Validator;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -41,6 +42,18 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:45',
+            'description' => 'required|max:225'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('courses/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $course = new Course();
 
         $course->name = $request->name;
@@ -82,6 +95,18 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:45',
+            'description' => 'required|max:225'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('courses/'.$id.'/edit')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+
         $group = Course::find($id);
         $group->name = $request->name;
         $group->description = $request->description;

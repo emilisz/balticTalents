@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use \Validator;
 use App\Groups_messages;
 use App\Message;
 use App\Notifications\LessonUpdated;
@@ -44,7 +45,20 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-//    $studentai = Groups_messages::where('group_id', '=', $request->grupe_id)->get();
+
+        $validator = Validator::make($request->all(), [
+            'grupe_id' => 'required',
+            'author' => 'required',
+            'name' => 'required|max:35',
+            'description' => 'required|max:225'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('groups/'.$request->grupe_id.'/notifications/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $studentai = Group::find($request->grupe_id)->students()->get();
 
         $group = new Message();
